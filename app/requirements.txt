@@ -1,0 +1,7 @@
+asyncio==3.4.3
+configparser==7.1.0
+postgis==1.0.4
+psycopg==3.2.3
+psycopg-postgis==0.4.0
+psycopg2-binary==2.9.10
+typing_extensions==4.12.2
