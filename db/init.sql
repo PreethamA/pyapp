@@ -5,8 +5,8 @@ CREATE TABLE us (
 );
 
 INSERT INTO us (username, email) VALUES
-    ('user1', 'user1@example.com'),
-    ('user2', 'user2@example.com');
+    ('user1', 'user201@example.com'),
+    ('user2', 'user202@example.com');
 
 
 Select * from us

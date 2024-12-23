@@ -1,13 +1,31 @@
 import psycopg2
-
-def connect_to_db():
-    conn_str = "dbname='test' user='postgres' host='127.0.0.1' port='5432' password='postgres'"
-    conn = psycopg2.connect(conn_str)
-    return conn
-
-if __name__ == "__main__":
+import os
+import time
+def val(i):
     try:
-        conn = connect_to_db()
-        print("Connected to database successfully!")
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        conn = psycopg2.connect(
+            host=os.environ.get("POSTGRES_HOST"),
+            database=os.environ.get("POSTGRES_DB"),
+            user=os.environ.get("POSTGRES_USER"),
+            password=os.environ.get("POSTGRES_PASSWORD"),
+        )
+        cur = conn.cursor()
+        k=f'user{i}@example.com'
+        cur.execute("INSERT INTO us (username, email) VALUES ('user1', %s)",(k,))  # Very simple query
+        #result = cur.fetchone()
+        result = conn.commit()
+        print(f"Database connected and query executed: {result}")
+        cur.close()
+        conn.close()
+
+    except psycopg2.Error as e:
+        print(f"Database error: {e}")
+    except Exception as e:
+        print(f"General error: {e}")
+
+if __name__ == '__main__':
+#while True:
+    for i in range(103,200):
+        time.sleep(10)
+        val(i)
+        print("App finished.") # Indicate normal exit

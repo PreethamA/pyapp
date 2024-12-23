@@ -21,3 +21,30 @@ services:
       - db
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/test
+
+
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    restart: always
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./app:/app
+    image: web:pyapp
+    container_name: pyapp_container
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/test
+  db:
+    image: postgres:15-alpine
+    restart: always
+    #build: ./db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    ports:
+      - "5433:5432"
