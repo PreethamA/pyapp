@@ -12,10 +12,10 @@ def val(i):
         )
         cur = conn.cursor()
         k = f'user{i}@example.com'
-        #cur.execute("INSERT INTO us (username, email) VALUES ('user1', %s)",(k,))  # Very simple query
+        cur.execute("INSERT INTO us (username, email) VALUES ('user1', %s)",(k,))  # Very simple query
         print(f"emailid:{k}")
         #result = cur.fetchone()
-        #conn.commit()
+        conn.commit()
 
         cur.execute("""SELECT * FROM us""")
         result1 = cur.fetchall()
@@ -34,9 +34,9 @@ def val(i):
             cur.close()
             conn.close()
 if __name__ == '__main__':
-  while True:
-    for i in range(303,500):
-        print(dtime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        time.sleep(10)
-        val(i)
-        print("App finished.") # Indicate normal exit
+
+ for i in range(303,500):
+    print(dtime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    time.sleep(10)
+    val(i)
+    print("App finished.") # Indicate normal exit
