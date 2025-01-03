@@ -31,4 +31,6 @@ services:
 
 volumes:
   db_data:
+  #- /var/lib/docker/volume/pyapp_db_data/_data:/var/lib/postgresql/data
+
     #driver:local
