@@ -1,10 +1,23 @@
 from flask import Flask, render_template, request
 import psycopg2
+import os
+from dotenv import load_dotenv,find_dotenv
 
 app = Flask(__name__)
 
+load_dotenv(find_dotenv("k.env"))
+
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
+
+DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+
 # PostgreSQL connection details (replace with your actual credentials)
-DATABASE_URL = "postgres://postgres:postgres@db:5432/test"
+#DATABASE_URL = "postgres://postgres:postgres@db:5432/test"
 
 @app.route('/')
 def index():
