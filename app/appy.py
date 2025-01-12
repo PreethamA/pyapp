@@ -13,7 +13,8 @@ conn = psycopg2.connect(
 """
 
 def val(i):
-    load_dotenv()
+    load_dotenv(find_dotenv("../.env"))
+    print("is it working in the function")
     try:
         conn = psycopg2.connect(
             host=os.getenv("DB_HOST"),
@@ -40,10 +41,10 @@ def val(i):
         print(f"Database error: {e}")
     except Exception as e:
         print(f"General error: {e}")
-    finally:
-        if conn:
-            cur.close()
-            conn.close()
+   # finally:
+  #      if conn:
+ #           cur.close()
+#            conn.close()
 if __name__ == '__main__':
 
  for i in range(303,500):
