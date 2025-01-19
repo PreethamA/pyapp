@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 load_dotenv(find_dotenv("../.env"))
 
-DB_USER = os.getenv('DB_USER')
+DB_USER = os.environ.get("POSTGRES_USER")
 DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_HOST = os.getenv('DB_HOST')
+DB_HOST = os.environ.get("POSTGRES_HOST")
 DB_PORT = os.getenv('DB_PORT')
-DB_NAME = os.getenv('DB_NAME')
+DB_NAME = 5432
 
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
@@ -30,7 +30,13 @@ def submit():
 
     try:
         # Connect to the PostgreSQL database
-        conn = psycopg2.connect(DATABASE_URL)
+        #conn = psycopg2.connect(DATABASE_URL)
+        conn = psycopg2.connect(
+            host=os.environ.get("POSTGRES_HOST"),
+            database=os.environ.get("POSTGRES_DB"),
+            user=os.environ.get("POSTGRES_USER"),
+            password=os.environ.get("POSTGRES_PASSWORD"),
+        )
         cur = conn.cursor()
 
         # Insert data into the existing table

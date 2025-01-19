@@ -10,7 +10,8 @@ RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
+#COPY ./.env .
 
 EXPOSE 5001
 
-CMD ["python3", "appy.py"]
+CMD ["python3", "app.py"]

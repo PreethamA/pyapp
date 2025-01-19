@@ -26,7 +26,7 @@ services:
       - "5001:5000"
     volumes:
       - ./app:/app  # Mount the app directory
-    command: python appy.py
+    command: python app.py
 
 volumes:
   db_data:
