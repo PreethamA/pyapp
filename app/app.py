@@ -43,10 +43,15 @@ def submit():
         cur.execute("INSERT INTO us (username, email) VALUES (%s, %s)", (username, email))
         conn.commit()
 
+        cur.execute("""SELECT * FROM us""")
+        result1 = cur.fetchall()
+        for r in result1:
+            print(r)
+
         cur.close()
         conn.close()
 
-        return "Data inserted successfully!"
+        return f"Data inserted successfully!{result1}"
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
