@@ -26,7 +26,7 @@ def val(i):
         cur = conn.cursor()
         k = f'user{i}@example.com'
         #cur.execute("INSERT INTO us (username, email) VALUES ('user1', %s)",(k,))  # Very simple query
-        print(f"emailid:{k}")
+        print(f"number of the emailid:{k}")
         #result = cur.fetchone()
         #conn.commit()
 
